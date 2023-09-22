@@ -1,0 +1,11 @@
+﻿table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*make each even tr grey background pls*/
+
+tbody tr:nth-child(odd) {
+    background-color: grey;
+}

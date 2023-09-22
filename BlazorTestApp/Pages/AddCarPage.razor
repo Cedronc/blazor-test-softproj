@@ -1,0 +1,29 @@
+﻿@page "/cars/add"
+@inject CarRepository CarRepository
+@inject NavigationManager NavigationManager
+
+<h3>AddCarPage</h3>
+
+	<input type="text" @bind-value="car.Name" />
+	<input type="number" @bind-value="car.CurrentBoost" />
+	<select @bind="car.HitboxType">
+		<option value="@HitboxType.Octane">Octane</option>
+		<option value="@HitboxType.Dominus">Dominus</option>
+		<option value="@HitboxType.Plank">Plank</option>
+		<option value="@HitboxType.Hybrid">Hybrid</option>
+		<option value="@HitboxType.Merc">Merc</option>
+	</select>
+
+	<button @onclick="AddCar">Add Car</button>
+
+
+@code {
+
+	private Car car = new Car();
+
+	private void AddCar()
+	{
+		CarRepository.AddCar(car);
+		NavigationManager.NavigateTo("/cars");
+	}
+}

@@ -1,0 +1,23 @@
+﻿@switch (HitboxType)
+{
+	case HitboxType.Octane:
+		<span style="color:red">Octane</span>
+		break;
+	case HitboxType.Dominus:
+		<span style="color:deepskyblue">Dominus</span>
+		break;
+	case HitboxType.Plank:
+		<span style="color:forestgreen">Plank</span>
+		break;
+	case HitboxType.Hybrid:
+		<span style="color:orange">Hybrid</span>
+		break;
+	case HitboxType.Merc:
+		<span style="color:purple">Merc</span>
+		break;
+}
+
+@code {
+	[Parameter]
+	public HitboxType HitboxType { get; set; }
+}
