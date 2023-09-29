@@ -1,0 +1,38 @@
+﻿@page "/pokemon"
+@inject IHttpClientFactory HttpClientFactory
+
+<h3>PokemonPage</h3>
+
+<input type="text" @bind-value="pokemonName" />
+<button @onclick="findPokemon">Search</button>
+
+@if (pokemon != null)
+{
+	<h4>@pokemon.</h4>
+	<img src="@pokemon.Sprites.FrontDefault" />
+}
+
+@code {
+	string pokemonName = "";
+	var pokemon;
+
+	private void findPokemon()
+	{
+
+		var request = new HttpRequestMessage(HttpMethod.Get, $"https://pokeapi.co/api/v2/pokemon/{pokemonName}");
+
+		var client = HttpClientFactory.CreateClient();
+
+		var response = client.SendAsync(request).Result;
+
+		if (response.IsSuccessStatusCode)
+		{
+			pokemon = response.Content.ReadFromJsonAsync<object>().Result;
+		}
+		else
+		{
+			pokemon = "not found";
+		}
+
+	}
+}
