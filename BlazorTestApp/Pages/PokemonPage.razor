@@ -9,12 +9,12 @@
 @if (pokemon != null)
 {
 	<h4>@pokemon.</h4>
-	<img src="@pokemon.Sprites.FrontDefault" />
+	<img src="@pokemon.sprites.front_default" />
 }
 
 @code {
 	string pokemonName = "";
-	var pokemon;
+	Pokemon pokemon;
 
 	private void findPokemon()
 	{
@@ -27,11 +27,11 @@
 
 		if (response.IsSuccessStatusCode)
 		{
-			pokemon = response.Content.ReadFromJsonAsync<object>().Result;
+			pokemon = response.Content.ReadFromJsonAsync<Pokemon>().Result;
 		}
 		else
 		{
-			pokemon = "not found";
+			pokemon = null;
 		}
 
 	}
